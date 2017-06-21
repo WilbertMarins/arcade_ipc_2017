@@ -96,6 +96,22 @@ def pause(self):
                     return ((random.randint(0, 39)*20, random.randint(0, 29)*20), pontuacao)
                 break
 
+    def comida(self, comidinha):
+        pygame.draw.rect(janela, RED, (comidinha[0], comidinha[1], 18, 18))
 
+    def placar(self, pontuacao):
+        janela.blit(placar, (10, 10))
+        pontos = font_text.render(str(pontuacao), 1, PINK)
+        janela.blit(pontos, (50, 30))
+
+    def parede(self):
+        alto=pygame.Rect(0,0,1,600)
+        alto2=pygame.Rect(799,0,1,600)
+        largo=pygame.Rect(0,0,799,1)
+        largo2=pygame.Rect(0,599,800,1)
+        pygame.draw.rect(janela, RED,alto )
+        pygame.draw.rect(janela, RED,alto2 )
+        pygame.draw.rect(janela, RED,largo )
+        pygame.draw.rect(janela, RED, largo2)
 
     
