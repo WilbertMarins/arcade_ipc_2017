@@ -61,4 +61,41 @@ class grafica(object):
         imagem = pygame.image.load('inst.PNG')
         janela.blit(imagem,[175,110])
 
+def pause(self):
+        imagem = pygame.image.load('pause.PNG')
+        janela.blit(imagem,[175,110])
 
+    def sobre(self):
+        janela.blit(equipe, (30, 70))
+        janela.blit(nome1, (50, 100))
+        janela.blit(nome2, (50, 150))
+        janela.blit(nome3, (50, 200))
+        janela.blit(nome4, (50, 250))
+        janela.blit(comando, (30, 300))
+        janela.blit(orientador, (50, 350))
+        janela.blit(instrucao2, (30, 550))
+
+
+    def cobra(self, orientacao, comidinha, pontuacao):
+        for i in opcao:
+            pygame.draw.rect(janela,GREEN, (i[0]+1, i[1]+1, 18 , 18))
+            if opcao.index(i) == len(opcao)-1:
+                if orientacao == 0:
+                    opcao.append((i[0] + 20, i[1]))
+                if orientacao == 90:
+                    opcao.append((i[0],i[1]-20))
+                if orientacao == 270:
+                    opcao.append((i[0], i[1]+20))
+                if orientacao == 180:
+                    opcao.append((i[0] - 20, i[1]))
+                if i != comidinha:
+                    del opcao[0]
+                    return (comidinha, pontuacao)
+                else:
+                    pontuacao += 1
+                    return ((random.randint(0, 39)*20, random.randint(0, 29)*20), pontuacao)
+                break
+
+
+
+    
