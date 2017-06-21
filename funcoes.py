@@ -39,3 +39,26 @@ orientador = font_pattern.render("Prof.Dr. Jucimar Jr", 1, (WHITE))
 
 #no jogar#
 placar = font_text.render("Score: ",1, YELLOW)
+class grafica(object):
+    def __init__(self):
+        print("e começa o jogo")
+        pass
+    def fundo(self):
+        janela.fill(WHITE)
+        face = pygame.Surface((780, 580))  # criei uma "máscara' com dimensão menor q a tela
+        face.fill(BLUE)
+        janela.blit(face, [10, 10])
+
+    def titulo(self, opcoes):
+        janela.blit(titulo, (280, 250))
+        janela.blit(jogar, (100, 400))
+        janela.blit(instrucao, (100, 450))
+        janela.blit(sobre, (100, 500))
+
+        pass
+
+    def instrucao(self):
+        imagem = pygame.image.load('inst.PNG')
+        janela.blit(imagem,[175,110])
+
+
