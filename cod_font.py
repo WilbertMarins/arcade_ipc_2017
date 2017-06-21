@@ -1,96 +1,116 @@
 import pygame,sys,funcoes,time
 from pygame.locals import*
 
+# Abre a tela de trabalho para o jogo
 pygame.init()
-tela = pygame.display.set_mode((800, 600))
+screen = pygame.display.set_mode((800, 600))
 pygame.display.set_caption("Snake Beta !!!")
-grafico = funcoes.grafica()
+graphic = funcoes.grafica()
 
-# variaveis
-modo = 0
-opcao_menu = 0
-orientacao = 0
-comidinha = (200, 200)
-pontuacao = 0
+# Variaveis
+mode = 0
+option_menu = 0
+guindance = 0
+item = (200, 200)
+punctuation = 0
 
-som = pygame.mixer.Sound("ben.ogg")
-som.set_volume(0.4)
-
-
-# ciclo do jogo
+# Opcoes do jogo
 while True:
-    if modo == 0:
-        grafico.fundo()
-        grafico.titulo(opcao_menu)
-        grafico.parede()
-    elif modo == 1:
+
+    if mode == 0:
+        graphic.bottom()
+        graphic.title(option_menu)
+        graphic.wall()
+
+    elif mode == 1:
         time.sleep(0.09)
-        grafico.fundo()
-        comidinha, pontuacao = grafico.cobra(orientacao, comidinha, pontuacao)
-        grafico.comida(comidinha)
-        grafico.placar(pontuacao)
-        grafico.parede()
+        graphic.bottom()
+        item, punctuation = graphic.snake(guindance, item, punctuation)
+        graphic.item(item)
+        graphic.scoreboard(punctuation)
+        graphic.wall()
         pass
-    elif modo == 2:
-        som.play()
-        grafico.fundo()
-        grafico.sobre()
-        grafico.parede()
+
+    elif mode == 2:
+        graphic.bottom()
+        graphic.about()
+        graphic.wall()
         pass
-    elif modo == 3:
-        grafico.fundo()
-        grafico.instrucao()
-        grafico.parede()
-    elif modo == 4:
-        grafico.fundo()
-        grafico.pause()
-        grafico.parede()
+
+    elif mode == 3:
+        graphic.bottom()
+        graphic.instrution()
+        graphic.wall()
+
+    elif mode == 4:
+        graphic.bottom()
+        graphic.pause()
+        graphic.wall()
 
 
+    # Corpo de eventos
+    for event in pygame.event.get():
 
-    # corpo de eventos
-    for evento in pygame.event.get():
-        if evento.type == pygame.QUIT:
+        # Verifica se botao de fechar foi acionado
+        if event.type == pygame.QUIT:
             pygame.quit()
             pass
-        elif evento.type == pygame.KEYDOWN:
-            if modo == 0:
-                if evento.key == pygame.K_j:
-                    modo = 1
-                if evento.key == pygame.K_s:
-                    modo = 2
-                if evento.key == pygame.K_i:
-                    modo = 3
-            elif modo == 1:
-                if evento.key == pygame.K_DOWN and orientacao != 90:
-                    orientacao = 270
-                if evento.key == pygame.K_UP and orientacao != 270:
-                    orientacao = 90
-                if evento.key == pygame.K_LEFT and orientacao != 0:
-                    orientacao = 180
-                if evento.key == pygame.K_RIGHT and orientacao != 180:
-                    orientacao = 0
-                if evento.key == pygame.K_v:
-                    modo = 0
-                if evento.key == pygame.K_p:
-                    modo = 4
-            elif modo == 2:
-                if evento.key == pygame.K_v:
-                    som.stop()
-                    modo = 0
-            elif modo == 3:
-                if evento.key == pygame.K_v:
-                    modo = 0
-            elif modo == 4:
-                if evento.key == pygame.K_p:
-                    modo = 1
+
+        # Da seguimento ao jogo
+        elif event.type == pygame.KEYDOWN:
+
+            # Menu iniciar
+            if mode == 0:
+
+                if event.key == pygame.K_j:
+                    mode = 1
+
+                if event.key == pygame.K_s:
+                    mode = 2
+
+                if event.key == pygame.K_i:
+                    mode = 3
+
+            # Roda o jogo
+            elif mode == 1:
+
+                if event.key == pygame.K_DOWN and guindance != 90:
+                    guindance = 270
+
+                if event.key == pygame.K_UP and guindance != 270:
+                    guindance = 90
+
+                if event.key == pygame.K_LEFT and guindance != 0:
+                    guindance = 180
+
+                if event.key == pygame.K_RIGHT and guindance != 180:
+                    guindance = 0
+
+                if event.key == pygame.K_v:
+                    mode = 0
+
+                if event.key == pygame.K_p:
+                    mode = 4
+
+            # Abre as instruções
+            elif mode == 2:
+                if event.key == pygame.K_v:
+                    mode = 0
+
+            # Abre o sobre o jogo
+            elif mode == 3:
+                if event.key == pygame.K_v:
+                    mode = 0
+
+            # Modo de pause enquanto esta jogando
+            elif mode == 4:
+                if event.key == pygame.K_p:
+                    mode = 1
 
 
-
-
-        elif evento.type == KEYUP:
+        elif event.type == KEYUP:
             pass
+
 
     pygame.display.update()
     pass
-
