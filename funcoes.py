@@ -108,7 +108,7 @@ def pause(self):
         high=pygame.Rect(0,0,1,600)
         high2=pygame.Rect(799,0,1,600)
         large=pygame.Rect(0,0,799,1)
-        large=pygame.Rect(0,599,800,1)
+        large2=pygame.Rect(0,599,800,1)
         pygame.draw.rect(window, RED,high )
         pygame.draw.rect(window, RED,high2 )
         pygame.draw.rect(window, RED,large )
